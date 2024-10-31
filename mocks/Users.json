@@ -1,0 +1,16 @@
+[
+  {
+    "email": "admin@mail.com",
+    "password": "12345",
+    "role": "Admin",
+    "name": "Achraf Doe",
+    "image": "https://github.com/shadcn.png"
+  },
+  {
+    "email": "user@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Hamza Doe",
+    "image": "https://github.com/shadcn.png"
+  }
+]
