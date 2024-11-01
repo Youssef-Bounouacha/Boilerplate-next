@@ -1,6 +1,3 @@
-// /store/authStore.ts
-
-import axios from "axios";
 import { AuthState, User } from "../types/User";
 import { create } from "zustand";
 import { setCookie, removeCookie } from "@/lib/cookies";
@@ -9,7 +6,7 @@ const useAuthStore = create<AuthState>((set) => ({
   user: null,
   token: null,
   isAuthenticated: false,
-  apiUrl: process.env.NEXT_PUBLIC_API_URL || "https://yourapi.com/users",
+  apiUrl: process.env.NEXT_PUBLIC_USER_URL || "https://yourapi.com/users",
 
   login: async (email, password): Promise<void> => {
     try {
