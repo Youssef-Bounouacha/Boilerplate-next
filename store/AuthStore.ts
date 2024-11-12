@@ -21,25 +21,33 @@ const useAuthStore = create<AuthState>((set) => ({
           role: foundUser.role,
           name: foundUser.name,
           image: foundUser.image,
+          phone: foundUser.phone,
+          address: foundUser.address,
+          company: foundUser.company,
         };
 
+        // Serialize as JWT-like token for mock consistency
+        const mockToken = btoa(JSON.stringify(tokenData));
+
         // Set both cookie and localStorage
-        setCookie("token", JSON.stringify(tokenData));
-        localStorage.setItem("token", JSON.stringify(tokenData));
+        setCookie("token", mockToken);
+        localStorage.setItem("token", mockToken);
 
         set({
           user: {
+            id: foundUser.id,
             email: foundUser.email,
             role: foundUser.role as "Admin" | "User",
             password: foundUser.password,
             name: foundUser.name || "",
             image: foundUser.image || "",
+            phone: foundUser.phone || "",
+            address: foundUser.address || "",
+            company: foundUser.company || "",
           },
-          token: "mock-token",
+          token: mockToken,
           isAuthenticated: true,
         });
-
-        return;
       } else {
         throw new Error("Invalid credentials");
       }
@@ -58,12 +66,26 @@ const useAuthStore = create<AuthState>((set) => ({
   checkToken: () => {
     const tokenData = localStorage.getItem("token");
     if (tokenData) {
-      const { email, role, name, image }: User = JSON.parse(tokenData);
-      set({
-        user: { email, role, password: "", name, image },
-        token: "mock-token",
-        isAuthenticated: true,
-      });
+      try {
+        const decodedData = JSON.parse(atob(tokenData)) as User;
+        set({
+          user: {
+            id: decodedData.id,
+            email: decodedData.email,
+            role: decodedData.role,
+            password: "",
+            name: decodedData.name,
+            image: decodedData.image,
+            phone: decodedData.phone,
+            address: decodedData.address,
+            company: decodedData.company,
+          },
+          token: tokenData,
+          isAuthenticated: true,
+        });
+      } catch (error) {
+        console.error("Token parsing error:", error);
+      }
     }
   },
 

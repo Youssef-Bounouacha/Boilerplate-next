@@ -31,13 +31,8 @@ export const navItems: NavItem[] = [
     items: [
       {
         title: "Profile",
-        url: "/dashboard/profile",
+        url: "/account/profile",
         icon: "userPen",
-      },
-      {
-        title: "Login",
-        url: "/",
-        icon: "login",
       },
     ],
   },

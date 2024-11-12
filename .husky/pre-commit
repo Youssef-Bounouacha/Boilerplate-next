@@ -1,2 +1,2 @@
-npm test
-echo “npm run format” > .husky/pre-commit
+# .husky/pre-commit
+npm test && npm run format
