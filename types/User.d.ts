@@ -1,10 +1,14 @@
 // /types/user.d.ts
 export interface User {
+  id: number;
   email: string;
   password: string;
   role: "Admin" | "User";
   name: string;
   image: string;
+  phone?: string;
+  address?: string;
+  company?: string;
 }
 
 export interface AuthState {

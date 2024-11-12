@@ -1,16 +1,46 @@
 [
   {
+    "id": 1,
     "email": "admin@mail.com",
     "password": "12345",
     "role": "Admin",
     "name": "Achraf Doe",
-    "image": "https://github.com/shadcn.png"
+    "image": "https://img.freepik.com/free-photo/fun-3d-illustration-american-referee_183364-81231.jpg?t=st=1731421815~exp=1731425415~hmac=b77f86f620202b8eed06fa6243ec8108ad4e905a9b8003ca65df490b538d4db3&w=740",
+    "phone": "0689734245",
+    "address": "Tanger, Morocco",
+    "company": "Hardiot"
   },
   {
-    "email": "user@mail.com",
+    "id": 2,
+    "email": "user1@mail.com",
     "password": "12345",
     "role": "User",
-    "name": "Hamza Doe",
-    "image": "https://github.com/shadcn.png"
+    "name": "Hamza Badaoui",
+    "image": "https://github.com/shadcn.png",
+    "phone": "0685287916",
+    "address": "Rabat, Morocco",
+    "company": "Yazaki Corporation"
+  },
+  {
+    "id": 3,
+    "email": "user2@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Yassine Janati",
+    "image": "https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-174401.jpg?t=st=1731422028~exp=1731425628~hmac=91c0b1d4116fe88fcb26b8a82eb7c7306f64a7c775dd5b6c9b87806d270a2c66&w=740",
+    "phone": "0654785813",
+    "address": "Casa Blanca, Morocco",
+    "company": "Renault"
+  },
+  {
+    "id": 4,
+    "email": "user3@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Younes Nday",
+    "image": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?t=st=1731422243~exp=1731425843~hmac=d87d3ff60cab1b8ae9455d86bde30d90bcad8aa6f45bd71e3ce7e7711f344648&w=826",
+    "phone": "0694375968",
+    "address": "Fes, Morocco",
+    "company": "Peugeot"
   }
 ]

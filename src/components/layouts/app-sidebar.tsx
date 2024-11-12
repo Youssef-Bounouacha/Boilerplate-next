@@ -1,4 +1,5 @@
 "use client";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Collapsible,
@@ -51,6 +52,7 @@ import { navItems } from "../../../constants/SideBarData";
 import { Icons } from "../ui/icons";
 import { Breadcrumbs } from "../breadcrumbs";
 import LogoHardiot from "../images";
+import useAccessControl from "@/hooks/useAccessControl";
 
 export const company = {
   name: "Hardiot",
@@ -67,30 +69,25 @@ export default function AppSidebar({
   const router = useRouter();
   const [mounted, setMounted] = React.useState(false);
   const pathname = usePathname();
-  // Only render after first client-side mount
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-  React.useEffect(() => {
-    // Check token on mount
-    checkToken();
+  const userRole = useAccessControl();
 
+  React.useEffect(() => setMounted(true), []);
+  React.useEffect(() => {
+    checkToken();
     if (!isAuthenticated) {
       router.push("/login");
     }
   }, [isAuthenticated, router, checkToken]);
 
-  if (!mounted) {
-    return null; // or a loading skeleton
-  }
+  if (!mounted) return null;
 
   return (
     <SidebarProvider>
       <Sidebar collapsible="icon">
         <SidebarHeader>
-          <div className="flex gap-2 py-2 text-sidebar-accent-foreground ">
+          <div className="flex gap-2 py-2 text-sidebar-accent-foreground">
             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-transparent text-sidebar-primary-foreground">
-              <company.logo />
+              <LogoHardiot />
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">
               <span className="truncate font-semibold">{company.name}</span>
@@ -102,67 +99,62 @@ export default function AppSidebar({
           <SidebarGroup>
             <SidebarGroupLabel>Overview</SidebarGroupLabel>
             <SidebarMenu>
-              {navItems.map(
-                (item: {
-                  title: string;
-                  url: string;
-                  icon?: keyof typeof Icons;
-                  isActive?: boolean;
-                  items?: { title: string; url: string }[];
-                }) => {
-                  const Icon = item.icon ? Icons[item.icon] : Icons.logo;
-                  return item?.items && item?.items?.length > 0 ? (
-                    <Collapsible
-                      key={item.title}
-                      asChild
-                      defaultOpen={item.isActive}
-                      className="group/collapsible"
-                    >
-                      <SidebarMenuItem>
-                        <CollapsibleTrigger asChild>
-                          <SidebarMenuButton
-                            tooltip={item.title}
-                            isActive={pathname === item.url}
-                          >
-                            {item.icon && <Icon />}
-                            <span>{item.title}</span>
-                            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                          </SidebarMenuButton>
-                        </CollapsibleTrigger>
-                        <CollapsibleContent>
-                          <SidebarMenuSub>
-                            {item.items?.map((subItem) => (
-                              <SidebarMenuSubItem key={subItem.title}>
-                                <SidebarMenuSubButton
-                                  asChild
-                                  isActive={pathname === subItem.url}
-                                >
-                                  <Link href={subItem.url}>
-                                    <span>{subItem.title}</span>
-                                  </Link>
-                                </SidebarMenuSubButton>
-                              </SidebarMenuSubItem>
-                            ))}
-                          </SidebarMenuSub>
-                        </CollapsibleContent>
-                      </SidebarMenuItem>
-                    </Collapsible>
-                  ) : (
-                    <SidebarMenuItem key={item.title}>
-                      <SidebarMenuButton
-                        asChild
-                        tooltip={item.title}
-                        isActive={pathname === item.url}
-                      >
-                        <Link href={item.url}>
+              {navItems.map((item) => {
+                if (item.title === "Users" && userRole != "Admin") {
+                  return null;
+                }
+                const Icon = item.icon ? Icons[item.icon] : Icons.logo;
+                return item?.items && item.items.length > 0 ? (
+                  <Collapsible
+                    key={item.title}
+                    asChild
+                    defaultOpen={item.isActive}
+                    className="group/collapsible"
+                  >
+                    <SidebarMenuItem>
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton
+                          tooltip={item.title}
+                          isActive={pathname === item.url}
+                        >
                           <Icon />
                           <span>{item.title}</span>
-                        </Link>
-                      </SidebarMenuButton>
+                          <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items.map((subItem) => (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton
+                                asChild
+                                isActive={pathname === subItem.url}
+                              >
+                                <Link href={subItem.url}>
+                                  <span>{subItem.title}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
                     </SidebarMenuItem>
-                  );
-                },
-              )}
+                  </Collapsible>
+                ) : (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton
+                      asChild
+                      tooltip={item.title}
+                      isActive={pathname === item.url}
+                    >
+                      <Link href={item.url}>
+                        <Icon />
+                        <span>{item.title}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>
@@ -181,7 +173,7 @@ export default function AppSidebar({
                         alt={user?.name || ""}
                       />
                       <AvatarFallback className="rounded-lg">
-                        {user?.name?.slice(0, 2)?.toUpperCase() || "CN"}
+                        {user?.name?.slice(0, 2).toUpperCase() || "CN"}
                       </AvatarFallback>
                     </Avatar>
                     <div className="grid flex-1 text-left text-sm leading-tight">
@@ -206,7 +198,7 @@ export default function AppSidebar({
                           alt={user?.name || ""}
                         />
                         <AvatarFallback className="rounded-lg">
-                          {user?.name?.slice(0, 2)?.toUpperCase() || "CN"}
+                          {user?.name?.slice(0, 2).toUpperCase() || "CN"}
                         </AvatarFallback>
                       </Avatar>
                       <div className="grid flex-1 text-left text-sm leading-tight">
@@ -214,32 +206,28 @@ export default function AppSidebar({
                           {user?.name || ""}
                         </span>
                         <span className="truncate text-xs">
-                          {" "}
                           {user?.email || ""}
                         </span>
                       </div>
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator />
-
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                      <BadgeCheck />
-                      Account
+                    <DropdownMenuItem
+                      onClick={() => router.push("/account/profile")}
+                    >
+                      <BadgeCheck /> Account
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <CreditCard />
-                      Billing
+                      <CreditCard /> Billing
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      <Bell />
-                      Notifications
+                      <Bell /> Notifications
                     </DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem>
-                    <LogOut />
-                    <button onClick={logout}>{"Log out"}</button>
+                  <DropdownMenuItem onClick={logout}>
+                    <LogOut /> Log out
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -255,15 +243,10 @@ export default function AppSidebar({
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumbs />
           </div>
-          <div className="hidden w-1/3 items-center gap-2 px-4 md:flex">
-            {/* <SearchInput /> */}
-          </div>
           <div className="flex items-center gap-2 px-4">
-            {/* <UserNav /> */}
             <ThemeToggle />
           </div>
         </header>
-        {/* page main content */}
         {children}
       </SidebarInset>
     </SidebarProvider>
