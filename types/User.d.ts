@@ -22,4 +22,5 @@ export interface AuthState {
   checkToken: () => void;
   hasAccess: (requiredRole: "Admin" | "User") => boolean;
   setApiUrl: (url: string) => void;
+  resetInactivityTimer: () => void;
 }
