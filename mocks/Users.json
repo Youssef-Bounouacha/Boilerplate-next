@@ -42,5 +42,93 @@
     "phone": "0694375968",
     "address": "Fes, Morocco",
     "company": "Peugeot"
+  },
+  {
+    "id": 5,
+    "email": "user4@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Yassine Tetiwi",
+    "image": "https://img.freepik.com/free-vector/smiling-young-man-with-glasses_1308-174435.jpg?t=st=1731511019~exp=1731514619~hmac=55697a3eb3430225c9c293165030dbd44e364d9fc1be2732c8fbc2a9cb210ccf&w=740",
+    "phone": "0685565481",
+    "address": "Rabat, Morocco",
+    "company": "Yazaki Corporation"
+  },
+  {
+    "id": 6,
+    "email": "user5@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Badr Yamali",
+    "image": "https://img.freepik.com/free-vector/smiling-young-man-illustration_1308-175961.jpg?t=st=1731511042~exp=1731514642~hmac=63b2eb3805a666052e66d06baa28455cb91dc3c64c4a733e81b3c56c423e6f8f&w=740",
+    "phone": "0685156789",
+    "address": "Rabat, Morocco",
+    "company": "Yazaki Corporation"
+  },
+  {
+    "id": 7,
+    "email": "user6@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Hafsa Chimali",
+    "image": "https://img.freepik.com/free-psd/3d-rendering-teenager-hood-isolated-white-background_1142-53198.jpg?t=st=1731511092~exp=1731514692~hmac=ce4c0db75673e5bfce7772586c898807748989aab9d0861f0f9655b76507e48e&w=826",
+    "phone": "0685156578",
+    "address": "Kenitra, Morocco",
+    "company": "Hisrshmann Automotive"
+  },
+  {
+    "id": 8,
+    "email": "user7@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Kawtar Elhaj",
+    "image": "https://img.freepik.com/free-photo/3d-illustration-young-girl-with-black-headscarf_1142-51578.jpg?t=st=1731511489~exp=1731515089~hmac=a6b8a775df8a76d0a95aaf5f42c456bccaccea8ccf42d3b6d17e45b8cbf3128f&w=826",
+    "phone": "0620358478",
+    "address": "Fes, Morocco",
+    "company": "Peugeot"
+  },
+  {
+    "id": 9,
+    "email": "user8@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Mounir Janati",
+    "image": "https://img.freepik.com/free-vector/smiling-blonde-boy-hoodie_1308-174731.jpg?t=st=1731511060~exp=1731514660~hmac=abf084d35335494ff2778b06cedc6570b4767044fa6e0b2ba0b9789281ff560a&w=740",
+    "phone": "0600269975",
+    "address": "Rabat, Morocco",
+    "company": "Yazaki Corporation"
+  },
+  {
+    "id": 10,
+    "email": "use9@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Daoud Bnlhaj",
+    "image": "https://img.freepik.com/free-psd/3d-digital-render-teenager-with-hood-isolated-white-background_1142-61441.jpg?t=st=1731512554~exp=1731516154~hmac=1ba55059be37ce19b1877d0fe47b26e693aec5a7c4d6b6124b722093ff9b6fa5&w=826",
+    "phone": "0685156578",
+    "address": "Kenitra, Morocco",
+    "company": "Hisrshmann Automotive"
+  },
+  {
+    "id": 11,
+    "email": "user10@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Saad Lamine",
+    "image": "https://img.freepik.com/free-vector/smiling-boy-yellow-hoodie_1308-175925.jpg?t=st=1731512616~exp=1731516216~hmac=cdb095e4240d99f5ecaf094a0878a127a307502e60a3302d86685d1e7f330f3f&w=740",
+    "phone": "0620352538",
+    "address": "Tetouan, Morocco",
+    "company": "Peugeot"
+  },
+  {
+    "id": 12,
+    "email": "user11@mail.com",
+    "password": "12345",
+    "role": "User",
+    "name": "Yassine Janati",
+    "image": "https://img.freepik.com/free-vector/cartoon-portrait-puberty-boy_1308-132597.jpg?t=st=1731512642~exp=1731516242~hmac=76c5c3127c2449ea772d337ffa4860b3bc2aeddf5635d6854e78743f2ec15772&w=740",
+    "phone": "0600261473",
+    "address": "Rabat, Morocco",
+    "company": "Yazaki Corporation"
   }
 ]

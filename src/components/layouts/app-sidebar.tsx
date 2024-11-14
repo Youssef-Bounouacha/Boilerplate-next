@@ -83,7 +83,7 @@ export default function AppSidebar({
 
   return (
     <SidebarProvider>
-      <Sidebar collapsible="icon">
+      <Sidebar collapsible="icon" variant="inset">
         <SidebarHeader>
           <div className="flex gap-2 py-2 text-sidebar-accent-foreground">
             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-transparent text-sidebar-primary-foreground">
