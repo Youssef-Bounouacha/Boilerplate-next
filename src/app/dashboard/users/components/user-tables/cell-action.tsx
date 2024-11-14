@@ -8,21 +8,17 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Edit, MoreHorizontal, Trash } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { View, MoreHorizontal, Trash } from "lucide-react";
 import { useState } from "react";
 import { User } from "../../../../../../types/User";
+import { UserDialog } from "./user-dialog";
 
 interface CellActionProps {
   data: User;
 }
 
 export const CellAction: React.FC<CellActionProps> = ({ data }) => {
-  const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const router = useRouter();
-
-  const onConfirm = async () => {};
 
   return (
     <>
@@ -42,16 +38,13 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-          <DropdownMenuItem
-            onClick={() => router.push(`/dashboard/user/${data.id}`)}
-          >
-            <Edit className="mr-2 h-4 w-4" /> Update
-          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setOpen(true)}>
-            <Trash className="mr-2 h-4 w-4" /> Delete
+            <View className="mr-2 h-4 w-4" /> View
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+
+      {open && <UserDialog open={open} setOpen={setOpen} data={data} />}
     </>
   );
 };
